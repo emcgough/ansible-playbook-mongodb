@@ -1,0 +1,8 @@
+[calendar-dev-us-west1-mongodb]
+calendar-dev-us-west1-mongodb-1 ansible_host=10.11.12.121
+calendar-dev-us-west1-mongodb-2 ansible_host=10.11.12.112
+calendar-dev-us-west1-mongodb-3 ansible_host=10.11.12.113
+
+[calendar-dev-us-west1-mongodb:vars]
+mongodb_version="3.0.8"
+mongodb_storage_dbpath="/data1/mongodb/data"

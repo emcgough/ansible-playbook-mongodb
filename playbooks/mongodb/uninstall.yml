@@ -1,0 +1,14 @@
+- hosts: calendar-dev-us-west1-mongodb
+  become: yes
+  tasks:
+    - name: "uninstall mongodb"
+      package:
+        name: mongodb*
+        state: absent
+    - name: "remove mongodb db path"
+      file:
+        path: "{{ mongodb_storage_dbpath }}"
+        state: absent
+
+
+

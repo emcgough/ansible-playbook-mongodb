@@ -1,0 +1,5 @@
+- hosts: calendar-dev-us-west1-mongodb
+  become: yes
+  tasks:
+    - include_role:
+        name: /Users/emcgough/Projects/ansible-role-mongodb
