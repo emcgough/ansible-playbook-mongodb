@@ -1,5 +1,27 @@
 - hosts: calendar-dev-us-west1-mongodb
   become: yes
   tasks:
+
+    - name: configure sysctl.conf
+      sysctl:
+        name:  "{{ item.name  }}"
+        value: "{{ item.value }}"
+        state: present
+        reload: yes
+        sysctl_set: yes
+      loop:
+        - { name: 'fs.file-max',                    value: '98000'  }
+        - { name: 'kernel.pid_max',                 value: '64000'  }
+        - { name: 'kernel.threads-max',             value: '64000'  }
+        - { name: 'net.core.somaxconn',             value: '4096'   }
+        - { name: 'net.ipv4.tcp_fin_timeout',       value: '30'     }
+        - { name: 'net.ipv4.tcp_keepalive_intvl',   value: '30'     }
+        - { name: 'net.ipv4.tcp_keepalive_time',    value: '120'    }
+        - { name: 'net.ipv4.tcp_max_syn_backlog',   value: '4096'   }
+        - { name: 'vm.dirty_background_ratio',      value: '5'      }
+        - { name: 'vm.dirty_ratio',                 value: '15'     }
+        - { name: 'vm.max_map_count',               value: '128000' }
+        - { name: 'vm.swappiness',                  value: '1'      }
+
     - include_role:
         name: ../ansible-role-mongodb
