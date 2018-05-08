@@ -23,5 +23,27 @@
         - { name: 'vm.max_map_count',               value: '128000' }
         - { name: 'vm.swappiness',                  value: '1'      }
 
-    - include_role:
+    - name: configure /etc/security/limits.d/50-mongod.conf
+      pam_limits:
+        domain: "{{ mongodb_user }}"
+        dest: "/etc/security/limits.d/50-mongod.conf"
+        limit_item: "{{ item.name  }}"
+        value:      "{{ item.value }}"
+        limit_type: "-"
+      loop:
+        - { name: 'nofile',     value: '1048576'   }
+        - { name: 'memlock',    value: 'unlimited' }
+        - { name: 'fsize',      value: 'unlimited' }
+        - { name: 'data',       value: 'unlimited' }
+        - { name: 'rss',        value: 'unlimited' }
+        - { name: 'stack',      value: 'unlimited' }
+        - { name: 'cpu',        value: 'unlimited' }
+        - { name: 'nproc',      value: 'unlimited' }
+        - { name: 'as',         value: 'unlimited' }
+        - { name: 'locks',      value: 'unlimited' }
+        - { name: 'sigpending', value: 'unlimited' }
+        - { name: 'msgqueue',   value: 'unlimited' }
+
+   - include_role:
         name: ../ansible-role-mongodb
+
