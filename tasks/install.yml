@@ -1,9 +1,9 @@
 - hosts: calendar-dev-us-west1-mongodb
   become: yes
   tasks:
+    - include_tasks: limits.yml
+    - include_tasks: sysctl.yml
     - include_tasks: tuned.yml
-#    - include_tasks: sysctl.yml
-#    - include_tasks: limits.yml
-#    - include_role:
-#       name: ../ansible-role-mongodb
+    - include_role:
+       name: ../ansible-role-mongodb
 
