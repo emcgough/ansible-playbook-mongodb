@@ -1,4 +1,4 @@
-- hosts: calendar-dev-us-west1-mongodb
+- hosts: mongo
   become: yes
   tasks:
     - name: "uninstall mongodb"
