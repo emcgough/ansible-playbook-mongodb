@@ -1,0 +1,5 @@
+- name: create /etc/tuned/no-thp directory
+  file:
+    path: /etc/tuned/no-thp
+    state: directory
+    mode: 0755
