@@ -1,0 +1,11 @@
+[main]
+include=virtual-guest
+
+[sysfs]
+/sys/kernel/mm/transparent_hugepage/enabled=never
+/sys/kernel/mm/transparent_hugepage/defrag=never
+
+[vm]
+transparent_hugepages=never
+transparent_hugepage.defrag=never
+
