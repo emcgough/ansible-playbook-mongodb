@@ -1,9 +1,21 @@
 - hosts: mongo
   become: yes
+  vars:
+    mongodb_login_host: "10.11.12.121"
+    mongodb_replication_params:
+      - { host_name: "{{ ansible_eth0.ipv4.address }}", host_port: "{{ mongodb_net_port }}", host_type: replica }
+    mongodb_replication_replset: "rs0"
+    mongodb_user: "mongod"
+    mongodb_version: "3.0.8"
+    mongodb_storage_dbpath: "/data1/mongodb/data"
+    mongodb_net_bindip: "0.0.0.0"
+    mongodb_net_port: "27017"
+    mongodb_net_http_enabled: "true"
   tasks:
     - include_tasks: limits.yml
     - include_tasks: sysctl.yml
     - include_tasks: tuned.yml
     - include_role:
        name: ../ansible-role-mongodb
+
 

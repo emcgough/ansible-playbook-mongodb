@@ -1,5 +1,6 @@
 [mongo_master]
-calendar-dev-us-west1-mongodb-1 ansible_host=10.11.12.121
+calendar-dev-us-west1-mongodb-1 ansible_host=10.11.12.121 mongodb_master=True
+
 
 [mongo_replicas]
 calendar-dev-us-west1-mongodb-2 ansible_host=10.11.12.112
@@ -11,7 +12,7 @@ mongo_master
 mongo_replicas
 
 
-[mongo:vars]
-mongodb_user="mongod"
-mongodb_version="3.0.8"
-mongodb_storage_dbpath="/data1/mongodb/data"
+
+
+
+
